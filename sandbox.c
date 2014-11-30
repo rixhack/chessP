@@ -122,7 +122,11 @@ int toPos(char c){
 }
 
 void mover(int i1,int j1,int i2,int j2,tablero* pTablero){
-
+    if(pTablero[i1][j1]->ocupada=0){
+        printf("No hay ninguna pieza en esa posición.");
+        jugar(pTablero);
+    }
+        
     pTablero[i2][j2]->pieza=pTablero[i1][j1]->pieza;
     pTablero[i2][j2]->ocupada=1;
     pTablero[i1][j1]->ocupada=0;
