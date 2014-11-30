@@ -1,0 +1,8 @@
+Summary:
+-Hours invested: 7
+-Lines of code: 163
+
+19/11/2014 18:28
+Repository working. Ready to start.
+30/11/2014 22:27 -7 hours.
+I started coding today. I've encountered quite a few problems but the first sandbox chessboard is working. It includes creation of a new game, alternative turns, reading moves from input with a sort of extended algebraic notation and performing them and a board display in console using upper and lowercasing to difference black and white pieces and hypens to denote empty squares. The program is written in c language and it is quite pointer and struct based. By now I'm asking myself why am I writing in English and coding in Spanish. I should fix that soon. 
