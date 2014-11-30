@@ -102,12 +102,9 @@ void jugar(tablero* pTablero){
     printf("Juegan las negras (posIni,posFin): ");
     break;
     }
-    printf("%c%i%c%i",c1,i1,c2,i2);
     scanf("\n%c%i%c%i",&c1,&i1,&c2,&i2);
-    printf("%c%i to %c%i",c1,i1,c2,i2);
     j1=toPos(c1);
     j2=toPos(c2);
-    printf("%c=%i,%c=%i",c1,j1,c2,j2);
     mover(i1-1,j1,i2-1,j2,pTablero);
 }
 
@@ -126,8 +123,6 @@ int toPos(char c){
 
 void mover(int i1,int j1,int i2,int j2,tablero* pTablero){
 
-    //pieza* ppieza= pTablero[i1][j1]->pieza;
-    printf("Moving %s in [%i][%i] to [%i][%i]...",pTablero[i1][j1]->pieza->tipo,i1,j1,i2,j2);
     pTablero[i2][j2]->pieza=pTablero[i1][j1]->pieza;
     pTablero[i2][j2]->ocupada=1;
     pTablero[i1][j1]->ocupada=0;
