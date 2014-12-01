@@ -18,3 +18,5 @@ void updateTablero(tablero*);
 void jugar(tablero*);
 int toPos(char);
 void mover(int,int,int,int,tablero*);
+int comprobarEntrada(int,int,int,int);
+void cleanInput();

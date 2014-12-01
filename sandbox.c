@@ -14,7 +14,6 @@ int main(){
     
     nuevaPartida(pTablero);
     
-    printf("%i",pTablero[0][0]->ocupada);
     setPieza(&tb1,0,"T",0,pTablero);
     setPieza(&tb2,7,"T",0,pTablero);
     setPieza(&cb1,1,"C",0,pTablero);
@@ -93,7 +92,7 @@ void setPieza(pieza* ppieza, int posicion, cadena tipo, int color,tablero* pTabl
 }
 
 void jugar(tablero* pTablero){
-    int i1,i2,j1,j2;
+    int i1,i2,j1,j2,ok;
     char c1,c2;
     switch(turno){
     case 0:
@@ -106,7 +105,14 @@ void jugar(tablero* pTablero){
     scanf("\n%c%i%c%i",&c1,&i1,&c2,&i2);
     j1=toPos(c1);
     j2=toPos(c2);
-    mover(i1-1,j1,i2-1,j2,pTablero);
+    ok=comprobarEntrada(j1,j2,i1,i2);
+    if(ok)
+        mover(i1-1,j1,i2-1,j2,pTablero);
+    else{
+        printf("Formato de jugada incorrecto.\n");
+        cleanInput();
+        jugar(pTablero);
+    }    
 }
 
 int toPos(char c){
@@ -119,12 +125,17 @@ int toPos(char c){
         case 'f': return 5;
         case 'g': return 6;
         case 'h': return 7;
+        default: return -1;
     }
 }
 
 void mover(int i1,int j1,int i2,int j2,tablero* pTablero){
     if(pTablero[i1][j1]->ocupada==0){
         printf("No hay ninguna pieza en esa posición.\n");
+        jugar(pTablero);
+    }
+    else if(pTablero[i1][j1]->pieza->color!=turno){
+        printf("No puedes mover una pieza del otro bando.\n");
         jugar(pTablero);
     }
     else{    
@@ -143,5 +154,19 @@ void mover(int i1,int j1,int i2,int j2,tablero* pTablero){
     
 }
 
+int comprobarEntrada(int j1, int j2, int i1, int i2){
+    int res=1;
+    if((j1==-1)||(j2==-1))
+        res=0;
+    else if((i1>8)||(i1<1)||(i2>8)||(i2<1))
+        res=0;
+    return res;
+}
 
+void cleanInput(){
+    int c;
+    while(c!='\n' && c != EOF){
+        c=getchar();
+    }
+}
      
