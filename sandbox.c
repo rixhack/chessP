@@ -14,10 +14,11 @@ int main(){
     
     nuevaPartida(pTablero);
     
+    printf("%i",pTablero[0][0]->ocupada);
     setPieza(&tb1,0,"T",0,pTablero);
     setPieza(&tb2,7,"T",0,pTablero);
     setPieza(&cb1,1,"C",0,pTablero);
-    setPieza(&cb2,6,"A",0,pTablero);
+    setPieza(&cb2,6,"C",0,pTablero);
     setPieza(&ab1,2,"A",0,pTablero);
     setPieza(&ab2,5,"A",0,pTablero);
     setPieza(&db,3,"D",0,pTablero);
@@ -122,21 +123,22 @@ int toPos(char c){
 }
 
 void mover(int i1,int j1,int i2,int j2,tablero* pTablero){
-    if(pTablero[i1][j1]->ocupada=0){
-        printf("No hay ninguna pieza en esa posición.");
+    if(pTablero[i1][j1]->ocupada==0){
+        printf("No hay ninguna pieza en esa posición.\n");
         jugar(pTablero);
     }
-        
-    pTablero[i2][j2]->pieza=pTablero[i1][j1]->pieza;
-    pTablero[i2][j2]->ocupada=1;
-    pTablero[i1][j1]->ocupada=0;
-    switch(turno){
-        case 0:
-            turno=1;
-            break;
-        case 1:
-            turno=0;
-            break;
+    else{    
+        pTablero[i2][j2]->pieza=pTablero[i1][j1]->pieza;
+        pTablero[i2][j2]->ocupada=1;
+        pTablero[i1][j1]->ocupada=0;
+        switch(turno){
+            case 0:
+                turno=1;
+                break;
+            case 1:
+                turno=0;
+                break;
+        }
     }
     
 }
